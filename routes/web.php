@@ -50,3 +50,9 @@ Route::get('admin_appointments', [AdminController::class, 'admin_appointments'])
 Route::get('/approved/{id}', [AdminController::class, 'approved']);
 
 Route::get('/canceled/{id}', [AdminController::class, 'canceled']);
+
+Route::get('/show_doctor', [AdminController::class, 'show_doctor']);
+
+Route::get('/delete_doctor/{id}', [AdminController::class, 'delete_doctor']);
+
+Route::get('/update_doctor/{id}', [AdminController::class, 'update_doctor']);
