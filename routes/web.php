@@ -25,6 +25,10 @@ Route::get('/home', [HomeController::class, 'redirect']);
 
 Route::post('/appointment', [HomeController::class, 'appointment']);
 
+Route::get('/myappointment', [HomeController::class, 'myappointment']);
+
+Route::get('/cancel_appoint/{id}', [HomeController::class, 'cancel_appoint']);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
