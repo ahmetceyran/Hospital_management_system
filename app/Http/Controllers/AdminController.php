@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\User;
 use App\Notifications\HospitalEmailNotification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 
@@ -15,8 +16,24 @@ class AdminController extends Controller
 {
     public function add_doctor_view()
     {
+        if(Auth::id())
+        {
 
-        return view('admin.add_doctor');
+            if(Auth::user()->usertype == 1)
+            {
+                return view('admin.add_doctor');
+            }
+            else
+            {
+                return redirect()->back();
+            }
+
+        }
+        else
+        {
+            return redirect('login');
+        }
+
 
     }
 
@@ -46,9 +63,29 @@ class AdminController extends Controller
 
     public function admin_appointments()
     {
-        $data=appointment::all();
+        if(Auth::id())
+        {
 
-        return view('admin.appointments', compact('data'));
+            if(Auth::user()->usertype == 1)
+            {
+
+                $data=appointment::all();
+
+                return view('admin.appointments', compact('data'));
+
+            }
+            else
+            {
+                return redirect()->back();
+            }
+
+        }
+        else
+        {
+
+            return redirect('login');
+
+        }
 
     }
 
