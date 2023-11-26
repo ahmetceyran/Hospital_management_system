@@ -60,6 +60,7 @@
                     <th style="padding: 10px; font-size: 20px; color: white; border: 1px solid;">Status</th>
                     <th style="padding: 10px; font-size: 20px; color: white; border: 1px solid;">Approved</th>
                     <th style="padding: 10px; font-size: 20px; color: white; border: 1px solid;">Cancel</th>
+                    <th style="padding: 10px; font-size: 20px; color: white; border: 1px solid;">Send Mail</th>
 
                 </tr>
 
@@ -76,6 +77,7 @@
                     <td style="padding: 10px; color: white; border: 1px solid;">{{$appo->status}}</td>
                     <td style="padding: 10px; color: white; border: 1px solid;"><a class="btn btn-success" href="{{url('approved', $appo->id)}}">Approve</a></td>
                     <td style="padding: 10px; color: white; border: 1px solid;"><a class="btn btn-danger" onclick="return confirm('Are You Sure to Cancel This Appointment!')" href="{{url('canceled', $appo->id)}}">Cancel</a></td>
+                    <td style="padding: 10px; color: white; border: 1px solid;"><a class="btn btn-warning" href="{{url('email_view', $appo->id)}}">Send Mail</a></td>
         
                 </tr>
 

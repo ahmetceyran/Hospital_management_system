@@ -6,6 +6,10 @@ use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 use App\Models\Doctor;
+use App\Models\User;
+use App\Notifications\HospitalEmailNotification;
+use Illuminate\Support\Facades\Notification;
+
 
 class AdminController extends Controller
 {
@@ -145,6 +149,35 @@ class AdminController extends Controller
         $doctor->save();
 
         return redirect()->back()->with('message', 'Doctor Updated Successfully!');
+
+    }
+
+    public function email_view($id)
+    {
+        $data=Appointment::find($id);
+
+        return view('admin.email_view', compact('data'));
+
+    }
+
+    public function send_email(Request $request, $id)
+    {
+        $data=appointment::find($id);
+
+        $details=[
+
+            'greeting' => $request->greeting,
+            'body' => $request->body,
+            'actiontext' => $request->actiontext,
+            'actionurl' => $request->actionurl,
+            'endpart' => $request->endpart
+
+        ];
+
+        Notification::send($data, new HospitalEmailNotification($details));
+
+        return redirect()->back()->with('message', 'Email Been Send Successfully!');
+
 
     }
 
